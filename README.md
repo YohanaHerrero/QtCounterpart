@@ -1,0 +1,2 @@
+# QtCounterpart
+QtCounterpart is a GUI that helps find HST counterparts for sources detected in MUSE datacubes. The GUI takes each detected MUSE source and guess which is the corresponding counterpart in HST data, if any. QtCounterpart displays a MUSE narrowband and four HST bands of the object. In addition, its spectroscopic and photometric information is also shown. As input you need a MUSE datacube, its corresponding catalogue of sources (with spatial and redshift data), four HST band images, and a photometric catalogue. 
