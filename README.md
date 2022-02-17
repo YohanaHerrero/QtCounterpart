@@ -82,7 +82,11 @@ colormaps.py : New matplotlib colormaps by Nathaniel J. Smith, Stefan van der Wa
 colors.py: get colors for the plots from colormaps.py
 read_write_files.py: read, saves and modifies fits tables by creating dictionaries with information using the first column as identifiers. 
 
-As already mentioned, the main script is ident_counterpart.py. Below, a few of the functions in the script are described, but for further details, refer to the header of each routine.
+As already mentioned, the main script is ident_counterpart.py. Below, I explain the general functionalities of each of the buttons and functionalities of the GUI:
+...
+
+The most important functions in the script are described below, but for further details, refer to the header of each routine.
+...
 
 
 **QtCounterpart output**
