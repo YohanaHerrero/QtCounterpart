@@ -73,10 +73,17 @@ The lower left big panel shows the narrowband of the objects detected by MUSE (M
 **What can I do?**
 
 **General overview** (inside what can I do section)
+In the images you can compare the source detections in MUSE with the corresponding ones observed in different HST bands. Besides, the possible counterparts to the MUSE object are marked with a white circle in the main HST image, based on spatial assumptions. You can select the most likely counterpart by clicking on those circles and click on the confidence buttons to record how sure you were about the decision. Then, the information of that counterpart will be displayed below the photometric information section. By clicking on the "next" button you will save all the displayed information in a fits output Table. 
 
 **Script overview** (inside what can I do section)
 
-As mentioned above, the main script is ident_counterpart.py
+There are several scripts that the main GUI script, ident_counterpart.py, uses:
+colormaps.py : New matplotlib colormaps by Nathaniel J. Smith, Stefan van der Walt, and (in the case of viridis) Eric Firing.
+colors.py: get colors for the plots from colormaps.py
+read_write_files.py: read, saves and modifies fits tables by creating dictionaries with information using the first column as identifiers. 
+
+As already mentioned, the main script is ident_counterpart.py. Below, a few of the functions in the script are described, but for further details, refer to the header of each routine.
+
 
 **QtCounterpart output**
 
