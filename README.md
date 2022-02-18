@@ -82,8 +82,12 @@ colormaps.py : New matplotlib colormaps by Nathaniel J. Smith, Stefan van der Wa
 colors.py: get colors for the plots from colormaps.py
 read_write_files.py: read, saves and modifies fits tables by creating dictionaries with information using the first column as identifiers. 
 
-As already mentioned, the main script is ident_counterpart.py. Below, I explain the general functionalities of each of the buttons and functionalities of the GUI:
-...
+As already mentioned, the main script is ident_counterpart.py. Below, I explain the purpose of each of button and the general functionalities of the GUI:
+The contrast of the small HST images can be modified by writing a different cut number on the cut boxes and clicking afterwards on the "Cuts" button. The smaller that number is, the lower the resolution of the images. By using the "Reset images" button, the resolution of all HST images is back to its default (0.99).
+Now, if one is more interested in one spectific HST band than in the rest of them, by double clicking on the wanted HST band, you will convert it into the main HST image of the GUI.
+The main HST image already hints at possible counterparts for the currently displayed MUSE source. You can select any of the white circles to choose the most likely counterpart. This circle will then turn into red and the photometric information of the selected object will be displayed below the Photometric information section. In order to guide the eye in the counterpart selection, the main HST image also contains the position of the MUSE object according to the spectroscopic data (shown below the MUSE information section). Once you have selected the counterpart, you must tell the GUI how sure you are about your selection. For that, you can click on the "Confidence" bullet points, indicating "0" for the most unsure case and "3" for the most sure scenario. Once you have done this, you have found an HST counterpart for the MUSE source so you can click on "Next" to save the displayed information and find the counterpart for the next object in the MUSE catalogue. Contrarily, if you believe you made a mistake selecting the counterpart, you only need to click on the "Clear counterparts" button to start classifying that MUSE source from the beginning.
+There might be of course cases for which the MUSE object has no counterpart in the HST data, one because faint or bc doesnt exist
+
 
 The most important functions in the script are described below, but for further details, refer to the header of each routine.
 ...
