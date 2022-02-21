@@ -1,5 +1,3 @@
-change lines 1126, 1169, 1187
-
 import numpy as np
 import matplotlib.pyplot as plt
 
