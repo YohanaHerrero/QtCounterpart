@@ -85,17 +85,48 @@ read_write_files.py: read, saves and modifies fits tables by creating dictionari
 As already mentioned, the main script is ident_counterpart.py. Below, I explain the purpose of each of button and the general functionalities of the GUI:
 The contrast of the small HST images can be modified by writing a different cut number on the cut boxes and clicking afterwards on the "Cuts" button. The smaller that number is, the lower the resolution of the images. By using the "Reset images" button, the resolution of all HST images is back to its default (0.99).
 Now, if one is more interested in one spectific HST band than in the rest of them, by double clicking on the wanted HST band, you will convert it into the main HST image of the GUI.
-The main HST image already hints at possible counterparts for the currently displayed MUSE source. You can select any of the white circles to choose the most likely counterpart. This circle will then turn into red and the photometric information of the selected object will be displayed below the Photometric information section. In order to guide the eye in the counterpart selection, the main HST image also contains the position of the MUSE object according to the spectroscopic data (shown below the MUSE information section). Once you have selected the counterpart, you must tell the GUI how sure you are about your selection. For that, you can click on the "Confidence" bullet points, indicating "0" for the most unsure case and "3" for the most sure scenario. Once you have done this, you have found an HST counterpart for the MUSE source so you can click on "Next" to save the displayed information and find the counterpart for the next object in the MUSE catalogue. Contrarily, if you believe you made a mistake selecting the counterpart, you only need to click on the "Clear counterparts" button to start classifying that MUSE source from the beginning.
-There might be of course cases for which the MUSE object has no counterpart in the HST data, one because faint or bc doesnt exist
-
+The main HST image already hints at possible counterparts (only when existing in the photometric catalogue) for the currently displayed MUSE source. You can select any of the white circles to choose the most likely counterpart. This circle will then turn into red and the photometric information of the selected object will be displayed below the Photometric information section. In order to guide the eye in the counterpart selection, the main HST image also contains the position of the MUSE object according to the spectroscopic data (shown below the MUSE information section). Once you have selected the counterpart, you must tell the GUI how sure you are about your selection. For that, you can click on the "Confidence" bullet points, indicating "0" for the most unsure case and "3" for the most sure scenario. Once you have done this, you have found an HST counterpart for the MUSE source so you can click on "Next" to save the displayed information and find the counterpart for the next object in the MUSE catalogue. 
+There might be of course cases for which the MUSE object has no counterpart in the HST data, the object is not registered in the photometric catalogues or one MUSE object has more than one counterpart. These cases can be recorded by clicking in one of the empty boxes below the "Confidence" circles. You can also write a comment so it is easier to recall the case in future inspections. If you believe you made a mistake selecting the counterpart or any of these possible scenarios, you only need to click on the "Clear counterparts" button to start classifying that MUSE source from scratch.
+In the case that the most likely counterpart does not appear in the photometric catalogue, there will be no white circle around that galaxy in the main HST image. However, it is possible to perform a forced photemetry by cliking (in the main HST image) on the center of the galaxy that you believe is the counterpart but has not been recorded in the photometric catalogues. Once you have clicked on the area of the main HST image where that undetected counterpart is, the GUI measures the flux and coordinates of the object. Specify the case that you encountered ("Counterpart not in catalog"), leave a comment if you wish and click "Next" to save the information.
+Any time it is possible to go back to the already classified objects by clicking on "Previous" until you find the desired object. Remember that if you want to save or rewrite the classification of an object, you must click on "Next" after you have clicked on any button/counterpart of the GUI. A more practical way of doing this is to write the MUSE ID of the desired object in the empty box right the "Jump to MUSE ID" button, click afterward on the button and your desired object will be again shown in the display.
+Finally, let's say you do not feel like classifying more objects. Then, press the red cross on the top right corner of the display to exit the GUI. Once you want to classify more objects again, you only need to run the GUI and click on the "Jump to next unclassified ID" button to continue with the object where you left it.
 
 The most important functions in the script are described below, but for further details, refer to the header of each routine.
-...
+clickable(widget): detects double click on the small HST bands
+get_HST_images(): extract HST and MUSE data and headers from the input fits files
+get_infos(): create MUSE NB from the MUSE data cube and extract spectroscopic information to be displayed under "MUSE information"
+get_pos_UV(): extract photometric information to be displayed under "Photometric information" and the locations of the possible HST counterparts
+image_Widgeti(), main_image_Widget(), image_Widget_narrowband_muse(): cut the relevant area of the small HST band i and display it. Same for the main HST image or the MUSE NB image
+small_hst_resolution(): change the resolution of the HST bands
+make_ismallHST_mainHST(): convert the small HST band i into the main HST image
+clicked_counterpart(): display information of the clicked counterpart on the main HST image
+clickToObtainPositionOnImage(): allow to click on main HST image to extract the position of clicked area (used in the forced photometry when the MUSE object is not recorded in the photometric catalogues)
+fill_window(): display buttons and images on the screen
+show_next(): called when clicked on "Next". Save displayed information and perform forced photometry (if needed)
 
 
 **QtCounterpart output**
 
 The output file generated by QtCounterpart is a fits Table containing all the counterpart identification results. The table contains the following columns:
+'ID': ID of the MUSE object
+'UV_ID': photometric ID of the counterpart
+'MUSE_RA': spectroscopic RA from MUSE (in deg)
+'UV_RA': photometric RA of the counterpart (in deg)
+'delta_RA': difference between MUSE_RA and UV_RA
+'MUSE_DEC': spectroscopic DED from MUSE (in deg)
+'UV_DEC': photometric DEC of the counterpart (in deg)
+'delta_DEC': difference between MUSE_DEC and UV_DEC
+'MUSE_z': spectroscopic redshift
+'UV_z': photometric redshift of the counterpart
+'Separation': spatial separation between the spectroscopic object and photometric location of the counterpart (np.sqrt((MUSE_RA-UV_RA)**2+(MUSE_Dec-UV_DEC)**2))
+'Confidence': confidence of our selection
+'Comment': comment written during the selection
+'More than one counterpart': 'Yes' if there is more than one counterpart and '-' if only one or none
+'No match': 'Yes' if there is no match between the spectroscopic and photometric catalogue for that object and '-' if there is no or one counterpart 
+'Not in catalog': 'Yes' if the counterpart is not in the photometric catalogue and '-' if it is or if there is no counterpart
+'Photometry': Forced photometry in case 'Not in catalog' = 'Yes' and one has clicked somewhere on the main HST image (in erg/s/cm^2/Angstrom)
+'dec_noMatch': DEC of the undetected counterpart in photometric catalogues, in case 'Not in catalog' = 'Yes' and one has clicked somewhere on the main HST image
+'ra_noMatch': RA of the undetected counterpart in photometric catalogues, in case 'Not in catalog' = 'Yes' and one has clicked somewhere on the main HST image
 
 **Tips for users**
 
