@@ -42,7 +42,7 @@ pg.setConfigOption('foreground', 'k')
 #names of catalogues, info to create NB from MUSE data cube and directories
 #This are default file names and directories
 
-MUSE_DATA_CUBE = 'G:/handling_MUSE_cubes_and_SB/DATACUBE_candels-cdfs-01_v2.0_dcsub_effnoised.fits' #MUSE cube
+MUSE_DATA_CUBE = 'MUSE_cubes/DATACUBE_candels-cdfs-01_v2.0_dcsub_effnoised.fits' #MUSE cube
 
 dict_cats = {
              'MUSE':'MW_60fields_main_table_v1.1.fits', # MUSE catalogue by default 
