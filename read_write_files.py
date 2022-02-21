@@ -130,6 +130,7 @@ def write_table_from_dict_in_dict(d,f):
             array = np.asarray(all_cols_content[c])[sorted_ids_index] 
             col = fits.Column(name=c,format=data_types[c],array=array)
             cols.append(col)
+            
     exclude = ['ID','RA','Ra','DEC','Dec','z','Separation','Confidence']
     # fill with all other columns, but sorted
     for c in cols_sorted:
