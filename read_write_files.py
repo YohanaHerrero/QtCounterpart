@@ -152,7 +152,6 @@ def write_table_from_dict_in_dict(d,f):
     #hdulist.info() one primary hdu and one bin table hdu
     
     
-
 def modify_output_table(d,f,hdu,position):
     '''
     reads table and modifies it 
@@ -161,9 +160,6 @@ def modify_output_table(d,f,hdu,position):
     d = dictionary that is gonna be saved in the output file
     f = name and directory of output file
     position = number of objects we have classified till we called this function
-    Check:
-    https://thispointer.com/python-how-to-add-append-key-value-pairs-in-dictionary-using-dict-update/#:~:text=We%20can%20add%20%2F%20append%20new,operator%20and%20update()%20function.
-    to update, append and write new values to dictionaries
     '''
     
     #read ids+dictionary with key-value pairs (dictionary with IDs as keys, each of which contains another dictionary with the individual values from the columns for each ID)
@@ -203,8 +199,7 @@ def invert_dict(d):
 
 
 def reshape_dict_in_dict(old_dict,keyname):
-    # make a dictionary of lists from a dictionary of dictionaries
-    
+    # make a dictionary of lists from a dictionary of dictionaries    
     new_vals = list(old_dict) # the old keys
     new_dict = {keyname:new_vals}
     for od in old_dict[new_vals[0]]: # initiate lists
@@ -215,16 +210,13 @@ def reshape_dict_in_dict(old_dict,keyname):
             temp = new_dict[od]
             temp.append(old_dict[nv][od])
             new_dict[od] = temp
-
     return new_dict
 
 
-def read_image_fits_file(image,hdu):
-    
+def read_image_fits_file(image,hdu):    
     # open segmentation map
     hdulist = fits.open(image)
     data = hdulist[hdu].data
     header = hdulist[hdu].header
     hdulist.close()
-
     return data,header  
