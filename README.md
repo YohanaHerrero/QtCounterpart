@@ -38,7 +38,7 @@ After adding the QtCounterpart directory to the PYTHONPATH or changing location 
     import QtCounterpart
 ```
 
-Beside the python packages, you will also need an integral field data cube, four HST bands of the same field, a catalogue of detected MUSE sources and a photometric catalog.
+Besides the python packages, you will also need an integral field data cube, four HST bands of the same field, a catalogue of detected MUSE sources and a photometric catalog.
 The MUSE and photometric catalogue must contain the following columns:
 
 - ID
