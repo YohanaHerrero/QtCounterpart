@@ -1263,14 +1263,14 @@ class main_GUI(QtGui.QWidget):
                         filter_zpt=q.fetch()
                         F_forced_photometry=forced_photometry_inf*filter_zpt['PHOTFLAM'].value[0]
                     counterparts[str(self.id_here)] = {'MUSE_RA':float(self.MUSE_RA),'MUSE_DEC':float(self.MUSE_Dec),'MUSE_z':float(self.MUSE_Z),
-                                                       'UV_ID':int(0),'UV_RA':int(0),'UV_DEC':int(0),'delta_RA':int(0),'delta_DEC':int(0), 'UV_z':int(0), 'Separation':'-', 
+                                                       'UV_ID':int(0),'UV_RA':int(0),'UV_DEC':int(0),'delta_RA':int(0),'delta_DEC':int(0), 'UV_z':int(0), 'Separation':int(0), 
                                                        'Confidence':self.le_confidence,'No match':self.le_nomatch,'ra_noMatch': float(self.RA_WithoutCounterpart),
                                                        'dec_noMatch': float(self.Dec_WithoutCounterpart),'Photometry':F_forced_photometry,'Not in catalog':self.le_nocatalog, 
                                                        'More than one counterpart':self.le_more,                                           
                                                        'Comment':self.le_comment.text()}
                 else:
                     counterparts[str(self.id_here)] = {'MUSE_RA':float(self.MUSE_RA),'MUSE_DEC':float(self.MUSE_Dec),'MUSE_z':float(self.MUSE_Z),
-                                                       'UV_ID':int(0),'UV_RA':int(0),'UV_DEC':int(0),'delta_RA':int(0),'delta_DEC':int(0), 'UV_z':int(0), 'Separation':'-', 
+                                                       'UV_ID':int(0),'UV_RA':int(0),'UV_DEC':int(0),'delta_RA':int(0),'delta_DEC':int(0), 'UV_z':int(0), 'Separation':int(0), 
                                                        'Confidence':self.le_confidence,'No match':self.le_nomatch,'ra_noMatch': self.RA_WithoutCounterpart,
                                                        'dec_noMatch': self.Dec_WithoutCounterpart,'Photometry':self.forced_photometry,'Not in catalog':self.le_nocatalog, 
                                                        'More than one counterpart':self.le_more,                                           
