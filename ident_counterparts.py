@@ -650,7 +650,7 @@ class main_GUI(QtGui.QWidget):
         
         
         #create a clickable square on the left of the labels that indicate the situation
-        nomatch_checkbox =  QtGui.QCheckBox('No match to MUSE in photometry', self)
+        nomatch_checkbox =  QtGui.QCheckBox('No match to MUSE in HST', self)
         self.le_nomatch = '-' #default to save in the output file if the checkbox is not clicked        
         nomatch_checkbox.setFont(QtGui.QFont('SansSerif', 11))
         self.grid.addWidget(nomatch_checkbox,8,11,1,2) 
@@ -838,7 +838,7 @@ class main_GUI(QtGui.QWidget):
         
         
         
-    #function that knows if the "no match to MUSE in photometry" checkbox was clicked in order to save it in the output file
+    #function that knows if the "no match to MUSE in HST" checkbox was clicked in order to save it in the output file
     def nomatch_button(self,state):
         if state == QtCore.Qt.Checked:  
             self.le_nomatch = 'Yes'
