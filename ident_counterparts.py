@@ -815,6 +815,9 @@ class main_GUI(QtGui.QWidget):
           self.hst_level_min775, self.hst_level_max775 = vminvmax(self.hst_data_775, scale=0.99, nans=0)
           self.hst_level_min160, self.hst_level_max160 = vminvmax(self.hst_data_160, scale=0.99, nans=0)
           self.le_resolution436.setText('0.99')
+          self.le_resolution606.setText('0.99')
+          self.le_resolution775.setText('0.99')
+          self.le_resolution160.setText('0.99')
           self.fill_window()
 
     
