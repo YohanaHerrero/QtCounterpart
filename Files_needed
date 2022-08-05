@@ -1,0 +1,14 @@
+To run the GUI, you need to have the following directories in your work directory:
+
+Folder1 named HST_images (it contains four HST images):
+             acs_435w_candels-cdfs-01_cut_v2.0.fits
+             acs_606w_candels-cdfs-01_cut_v2.0.fits
+             acs_814w_candels-cdfs-01_cut.fits
+             wfc3_160w_candels-cdfs-01_cut_v2.0.fits
+             
+Folder2 named Field1 (contains MUSE data cube):
+             DATACUBE_candels-cdfs-01_v2.0_dcsub_effnoised.fits
+             
+Directly in your directory, you need the MUSE and photometric catalogs:
+             MW_60fields_main_table_v1.1.fits
+             CANDELS.GOODSS.F160W.v1_1.photom.cat  
