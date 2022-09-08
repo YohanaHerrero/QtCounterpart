@@ -32,12 +32,6 @@ QtCounterpart is written in Python and uses a range of default packages included
 - pyqtgraph 
 - PyQt5
 
-After adding the QtCounterpart directory to the PYTHONPATH or changing location to the QtCounterpart directory, QtCounterpart can be imported in python with:
-
-```
-    import QtCounterpart
-```
-
 Besides the python packages, you will also need an integral field data cube, four HST bands of the same field, a catalogue of detected MUSE sources and a photometric catalog.
 The MUSE and photometric catalogue must contain the following columns:
 
