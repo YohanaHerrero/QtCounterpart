@@ -916,7 +916,7 @@ class main_GUI(QtGui.QWidget):
             MUSE_line_label.setFont(QtGui.QFont('SansSerif', 11))
             self.grid.addWidget(MUSE_line_label,20,7,1,1)
         except:
-            self.MUSE_lead_line = 0
+            self.MUSE_lead_line = str(0)
             MUSE_line_label = QtGui.QLabel('Lead line:\t'+str(self.MUSE_lead_line), self) #strongest line in the muse image? YES
             MUSE_line_label.setFont(QtGui.QFont('SansSerif', 11))
             self.grid.addWidget(MUSE_line_label,20,7,1,1)
