@@ -69,7 +69,7 @@ parser.add_argument("-p","--pcatalog", required=False, type=str,
                     default=def_pcatalog, help="Input photometric catalog FITS file.")
 
 parser.add_argument("-hstMAIN","--hstimageMAIN", required=False, type=str, 
-                    default=def_hstMAIN, help="HST3 image for comparison.")
+                    default=def_hstMAIN, help="HST main image for comparison.")
 
 parser.add_argument("-hst1","--hstimage1", required=False, type=str, 
                     default=def_hst1, help="HST1 image for comparison.")
