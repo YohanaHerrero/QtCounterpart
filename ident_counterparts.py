@@ -887,41 +887,48 @@ class main_GUI(QtGui.QWidget):
         try:
             MUSE_z_label = QtGui.QLabel('z:\t'+str(np.round(self.MUSE_Z,3)), self)
             MUSE_z_label.setFont(QtGui.QFont('SansSerif', 11))
-            self.grid.addWidget(MUSE_z_label,17,7,1,1)
+            self.grid.addWidget(MUSE_z_label,18,7,1,1)
         except:
             self.MUSE_Z = 0
             MUSE_z_label = QtGui.QLabel('z:\t'+str(np.round(self.MUSE_Z)), self)
             MUSE_z_label.setFont(QtGui.QFont('SansSerif', 11))
-            self.grid.addWidget(MUSE_z_label,17,7,1,1)
-            
+            self.grid.addWidget(MUSE_z_label,18,7,1,1)
         try:
-            MUSE_confidence_label = QtGui.QLabel('Confidence:\t'+str(self.MUSE_confidence), self)  
+            MUSE_lambda_label = QtGui.QLabel('Lambda:\t'+str(np.round(self.lam,1)), self)
+            MUSE_lambda_label.setFont(QtGui.QFont('SansSerif', 11))
+            self.grid.addWidget(MUSE_lambda_label,17,7,1,1)
+        except:
+            self.lam = 0
+            MUSE_lambda_label = QtGui.QLabel('z:\t'+str(np.round(self.lam)), self)
+            MUSE_lambda_label.setFont(QtGui.QFont('SansSerif', 11))
+            self.grid.addWidget(MUSE_lambda_label,17,7,1,1)
+        try:
+            MUSE_confidence_label = QtGui.QLabel('Confidence:\t'+str(self.MUSE_confidence), self) #strongest line in the muse image? YES
             MUSE_confidence_label.setFont(QtGui.QFont('SansSerif', 11))
-            self.grid.addWidget(MUSE_confidence_label,18,7,1,1)
+            self.grid.addWidget(MUSE_confidence_label,19,7,1,1)
         except:
             self.MUSE_confidence = 0
-            MUSE_confidence_label = QtGui.QLabel('Confidence:\t'+str(self.MUSE_confidence), self)  
+            MUSE_confidence_label = QtGui.QLabel('Confidence:\t'+str(self.MUSE_confidence), self) #strongest line in the muse image? YES
             MUSE_confidence_label.setFont(QtGui.QFont('SansSerif', 11))
-            self.grid.addWidget(MUSE_confidence_label,18,7,1,1)
-        
+            self.grid.addWidget(MUSE_confidence_label,19,7,1,1)
         try:
-            MUSE_line_label = QtGui.QLabel('Lead line:\t'+str(self.MUSE_lead_line), self)  
+            MUSE_line_label = QtGui.QLabel('Lead line:\t'+str(self.MUSE_lead_line), self) #strongest line in the muse image? YES
             MUSE_line_label.setFont(QtGui.QFont('SansSerif', 11))
-            self.grid.addWidget(MUSE_line_label,19,7,1,1)
+            self.grid.addWidget(MUSE_line_label,20,7,1,1)
         except:
             self.MUSE_lead_line = 0
-            MUSE_line_label = QtGui.QLabel('Lead line:\t'+str(self.MUSE_lead_line), self) 
+            MUSE_line_label = QtGui.QLabel('Lead line:\t'+str(self.MUSE_lead_line), self) #strongest line in the muse image? YES
             MUSE_line_label.setFont(QtGui.QFont('SansSerif', 11))
-            self.grid.addWidget(MUSE_line_label,19,7,1,1)
+            self.grid.addWidget(MUSE_line_label,20,7,1,1)
         try:
             MUSE_SN_label = QtGui.QLabel('S/N:\t'+str(np.round(self.MUSE_SN,2)), self)
             MUSE_SN_label.setFont(QtGui.QFont('SansSerif', 11))
-            self.grid.addWidget(MUSE_SN_label,20,7,1,1)
+            self.grid.addWidget(MUSE_SN_label,21,7,1,1)
         except:
             self.MUSE_SN = 0
             MUSE_SN_label = QtGui.QLabel('S/N:\t'+str(np.round(self.MUSE_SN)), self)
             MUSE_SN_label.setFont(QtGui.QFont('SansSerif', 11))
-            self.grid.addWidget(MUSE_SN_label,20,7,1,1)
+            self.grid.addWidget(MUSE_SN_label,21,7,1,1)
         
         # information on UV counterpart
         # blank by default until we click on any counterpart
