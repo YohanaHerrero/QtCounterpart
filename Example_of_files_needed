@@ -1,14 +1,22 @@
 To run the GUI, you need to have the following directories in your work directory:
 
-Folder1 named HST_images (it contains four HST images):
+Folder1 named HST_images (it contains HST images, a maximum of four will be displayed):
              acs_435w_candels-cdfs-01_cut_v2.0.fits
              acs_606w_candels-cdfs-01_cut_v2.0.fits
              acs_814w_candels-cdfs-01_cut.fits
              wfc3_160w_candels-cdfs-01_cut_v2.0.fits
              
-Folder2 named Field1 (contains MUSE data cube):
+Folder2 named Fields (contains MUSE data cube and spectroscopic catalog):
              DATACUBE_candels-cdfs-01_v2.0_dcsub_effnoised.fits
+             lsdcat_candels-cdfs-01.fits
              
-Directly in your directory, you need the MUSE and photometric catalogs:
-             MW_60fields_main_table_v1.1.fits
-             CANDELS.GOODSS.F160W.v1_1.photom.cat  
+Directly in your directory, you need the photometric catalog:
+             catalog_photometry_candels-cdfs-01.fits 
+
+The HST images must contain a proper WCS with pixel information, i.e. 'CRPIX' keyword. Also, if one wants to perform forced photometry for an 
+object, the HST header also needs to contain the keyword 'PHOTFLAM'.
+
+The datacube must have two spatial dimensions, one wavelength dimension and a proper WCS. Besides, the header must contain 
+pixel information (keyword 'CD2_2' or 'CDELT2'), 'CD3_3' (bin size of wavelenth), and 'CRVAL3' (starting point of wavelength).
+
+The spectroscopic and photometric catalog must, at least, contain RA, DEC info.
