@@ -1169,13 +1169,30 @@ class main_GUI(QtGui.QWidget):
     #get information from the MUSE catalog to be displayed with the fill_window function    
     def get_MUSE_info(self):
         self.id_here = ids_all[self.j]   
-        # read parameters from MUSE catalogue for current object
-        self.MUSE_ID = info_MUSE_ids[self.id_here][col_ID]
-        self.MUSE_SN = info_MUSE_ids[self.id_here][col_sn]
         self.MUSE_RA = info_MUSE_ids[self.id_here][col_ra]
         self.MUSE_Dec = info_MUSE_ids[self.id_here][col_dec]
-        self.MUSE_lead_line = info_MUSE_ids[self.id_here][col_line]
-        self.MUSE_confidence = info_MUSE_ids[self.id_here][col_confidence]
+        # read parameters from MUSE catalogue for current object
+        try:
+            self.MUSE_ID = info_MUSE_ids[self.id_here][col_ID]
+            print(self.MUSE_ID,type(self.MUSE_ID))
+        except:
+            self.MUSE_ID = int(0)
+        try:
+           self.MUSE_SN = info_MUSE_ids[self.id_here][col_sn]
+        except:
+           self.MUSE_SN = int(0)
+        try:
+            self.MUSE_lead_line = info_MUSE_ids[self.id_here][col_line]
+        except:
+            self.MUSE_lead_line = str(0)
+        try:
+            self.MUSE_confidence = info_MUSE_ids[self.id_here][col_confidence]
+        except:
+            self.MUSE_confidence = str(0)
+        
+        #lambda, ra and dec of interest to extract the NB from the MUSE cube
+        ra = self.MUSE_RA
+        dec = self.MUSE_Dec
 
         #lambda, ra and dec of interest to extract the NB from the MUSE cube
         ra = self.MUSE_RA
