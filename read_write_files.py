@@ -116,12 +116,22 @@ def write_table_from_dict_in_dict(d,f):
             col = fits.Column(name=c,format=data_types[c],array=array)
             cols.append(col)
     for c in cols_sorted:
+        if 'Separation' in c:
+            array = np.asarray(all_cols_content[c])[sorted_ids_index] 
+            col = fits.Column(name=c,format=data_types[c],array=array)
+            cols.append(col)
+    for c in cols_sorted:
+        if 'lambda' in c:
+            array = np.asarray(all_cols_content[c])[sorted_ids_index] 
+            col = fits.Column(name=c,format=data_types[c],array=array)
+            cols.append(col)
+    for c in cols_sorted:
         if 'z' in c:
             array = np.asarray(all_cols_content[c])[sorted_ids_index] 
             col = fits.Column(name=c,format=data_types[c],array=array)
             cols.append(col)
     for c in cols_sorted:
-        if 'Separation' in c:
+        if 'Photometry' in c:
             array = np.asarray(all_cols_content[c])[sorted_ids_index] 
             col = fits.Column(name=c,format=data_types[c],array=array)
             cols.append(col)
@@ -130,8 +140,23 @@ def write_table_from_dict_in_dict(d,f):
             array = np.asarray(all_cols_content[c])[sorted_ids_index] 
             col = fits.Column(name=c,format=data_types[c],array=array)
             cols.append(col)
+    for c in cols_sorted:
+        if 'Comment' in c:
+            array = np.asarray(all_cols_content[c])[sorted_ids_index] 
+            col = fits.Column(name=c,format=data_types[c],array=array)
+            cols.append(col)
+    for c in cols_sorted:
+        if 'ra_noMatch' in c:
+            array = np.asarray(all_cols_content[c])[sorted_ids_index] 
+            col = fits.Column(name=c,format=data_types[c],array=array)
+            cols.append(col)
+    for c in cols_sorted:
+        if 'dec_noMatch' in c:
+            array = np.asarray(all_cols_content[c])[sorted_ids_index] 
+            col = fits.Column(name=c,format=data_types[c],array=array)
+            cols.append(col)
             
-    exclude = ['ID','RA','Ra','DEC','Dec','z','Separation','Confidence']
+    exclude = ['ID','RA','Ra','DEC','Dec','Separation','z','lambda','Photometry','Confidence','Comment','ra_noMatch','dec_noMatch']
     # fill with all other columns, but sorted
     for c in cols_sorted:
         test = [i for i in exclude if i in c]
@@ -139,7 +164,7 @@ def write_table_from_dict_in_dict(d,f):
             array = np.asarray(all_cols_content[c])[sorted_ids_index]
             col = fits.Column(name=c,format=data_types[c],array=array)
             cols.append(col)
-            
+     
     tbhdu = fits.BinTableHDU.from_columns(cols) #create bin table hdu from scratch
     current_file_name = inspect.getfile(inspect.currentframe()) 
     prihdr = fits.Header()
@@ -152,14 +177,18 @@ def write_table_from_dict_in_dict(d,f):
     #hdulist.info() one primary hdu and one bin table hdu
     
     
+
 def modify_output_table(d,f,hdu,position):
     '''
     reads table and modifies it 
     I can pass an existing table to the function and only rewrites specific keys 
     (not the entire table) or appends new stuff if those keys do not exist.
-    d = dictionary that is gonna be saved in the output file
+    d = dictionary that is gonna be saved in the output file, the counterparts
     f = name and directory of output file
     position = number of objects we have classified till we called this function
+    Check:
+    https://thispointer.com/python-how-to-add-append-key-value-pairs-in-dictionary-using-dict-update/#:~:text=We%20can%20add%20%2F%20append%20new,operator%20and%20update()%20function.
+    to update, append and write new values to dictionaries
     '''
     
     #read ids+dictionary with key-value pairs (dictionary with IDs as keys, each of which contains another dictionary with the individual values from the columns for each ID)
@@ -174,14 +203,14 @@ def modify_output_table(d,f,hdu,position):
             id_params[c] = all_cols_content[c][i]
         shaped_all_cols_content[str(all_cols_content['ID'][i])] = id_params 
   
-    #check if the ID in the counterpart is already in the output table
+    #check if the ID in the counterpart is already in the output table  
     if all_cols_content['ID'][position] in info_ids: #if ID counterpart is already in output file   
         for key, value in all_cols_content.items():  
             #replace the values
             if info_ids[all_cols_content['ID'][position]][key] == all_cols_content[key][position]:
                 info_ids[all_cols_content['ID'][position]] = shaped_all_cols_content[all_cols_content['ID'][position]]
             write_table_from_dict_in_dict(info_ids,f)
-            print('ID info replaced in',f)
+            print('ID '+str(all_cols_content['ID'][position])+' info replaced in',f)
             break
     else:             
         for i, item in enumerate(shaped_all_cols_content):
@@ -199,7 +228,8 @@ def invert_dict(d):
 
 
 def reshape_dict_in_dict(old_dict,keyname):
-    # make a dictionary of lists from a dictionary of dictionaries    
+    # make a dictionary of lists from a dictionary of dictionaries
+    
     new_vals = list(old_dict) # the old keys
     new_dict = {keyname:new_vals}
     for od in old_dict[new_vals[0]]: # initiate lists
@@ -210,13 +240,16 @@ def reshape_dict_in_dict(old_dict,keyname):
             temp = new_dict[od]
             temp.append(old_dict[nv][od])
             new_dict[od] = temp
+
     return new_dict
 
 
-def read_image_fits_file(image,hdu):    
+def read_image_fits_file(image,hdu):
+    
     # open segmentation map
     hdulist = fits.open(image)
     data = hdulist[hdu].data
     header = hdulist[hdu].header
     hdulist.close()
+
     return data,header  
