@@ -1610,9 +1610,13 @@ class main_GUI(QtGui.QWidget):
         xy = points[0].pos()
         x,y = xy[0],xy[1]
         # retrieve the ID of the clicked object
-        here_ID_UV = int(self.UV_IDs[np.argmin(abs(self.UV_x-x))])
-        self.UV_ID = str(here_ID_UV)
-        self.le_UV_ID.setText(self.UV_ID) #I write the ID to the little box with a 0 as a default
+        try:
+            here_ID_UV = int(self.UV_IDs[np.argmin(abs(self.UV_x-x))])
+            self.UV_ID = str(here_ID_UV)
+            self.le_UV_ID.setText(self.UV_ID) #I write the ID to the little box with a 0 as a default
+        except:
+            self.UV_ID = str(0)
+            self.le_UV_ID.setText(self.UV_ID)
         
         here_DEC_UV = float("%.9f" % self.UV_Decs[np.argmin(abs(self.UV_x-x))])
         self.UV_DEC = here_DEC_UV #this is the DEC from the photometry
