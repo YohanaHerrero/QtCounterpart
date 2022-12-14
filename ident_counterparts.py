@@ -717,7 +717,7 @@ class main_GUI(QtGui.QWidget):
         
     def main_image_HST_default(self):
         # HST image with highest depth and clickable objects
-        here_label = QtGui.QLabel('HST main image (default 775)', self)
+        here_label = QtGui.QLabel('HST main image', self)
         here_label.setFont(QtGui.QFont('SansSerif', 11, QtGui.QFont.Bold))
         self.grid.addWidget(here_label,0,0,1,1)
         self.img_hst = pg.GraphicsLayoutWidget(self)
