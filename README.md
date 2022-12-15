@@ -174,7 +174,7 @@ Once, the script is run, the GUI is displayed.
 ### **What do I see?**
 The bottom left big panel shows the narrowband of the objects detected by MUSE ("MUSE narroband"), which are saved in the MUSE catalogue. The top left big panel shows a HST band cutout ("Main HST image") corresponding to the same region where the detected MUSE object is located. Similarly, the four top small panels (HST band 435, 606, 775/814, and 160) show different HST bands of the same main HST image cutout. Inside the main HST image, the black circle with the inner cross represents the MUSE position of the object, while the empty white circles show the position of the possible HST counterparts of the MUSE source. The numerical boxes below the small HST panels show the current resolution cut of the HST bands, representing the scaling factor used for the intensity of the HST images. The "Reset images" button offers the possibility to set all GUI images back to the original display. Spectroscopic data from MUSE is shown in the left half of the GUI. There, information such as MUSE ID, right ascension (RA), declination (Dec), wavelength (lambda), redshift (z), confidence of the source detection, the line that lead to the detection or the signal to noise (S/N) of the detection is found. Right above, photometric data from the phototometric catalogue is shown. The photometric UV ID, the difference in RA between the spectroscopic and the photometric values, same for Dec, and the photometric redshift are displayed. 
 
-![GUI screenshot](https://user-images.githubusercontent.com/81447012/154290161-9691d87a-1c94-4fda-974c-9a7f47626531.PNG)
+![GUI_screenshot](files://C:Users/yohan/Desktop/Counterpart_GUI/GUI_screenshot.png)
 
 ### **What can I do?**
 
