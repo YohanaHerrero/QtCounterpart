@@ -669,6 +669,12 @@ class main_GUI(QtGui.QWidget):
                                              self.width_window_pix_muse,
                                              self.width_window_pix_muse))
         self.view_muse.setAspectLocked(True)
+	
+	#cross on the MUSE NB corresponding to the spectroscopic position of the object
+        s2 = pg.ScatterPlotItem([float(x_muse)],[float(y_muse)],symbol='o',pxMode=False,pen=pg.mkPen('k',width=2),size=2.5,brush=pg.mkBrush(255,255, 255, 0)) 
+        s3 = pg.ScatterPlotItem([float(x_muse)],[float(y_muse)],symbol='+',pxMode=False,size=1.5) 
+        self.view_muse.addItem(s3)
+        self.view_muse.addItem(s2)
       
     #Main HST image setting style, by default we choose the 436 band to be the main image   
     def main_image_HST(self,data,header):
@@ -868,7 +874,7 @@ class main_GUI(QtGui.QWidget):
         more_checkbox.setToolTip("You see several HST counterparts for the MUSE object.")
         more_checkbox.stateChanged.connect(self.more_button)      
       
-        # Get the photometric information
+        # Get the spectroscopic information
         self.get_UV_info()  
         
         # display information on MUSE data on window (taken from the MUSE file that we pass on the first window of the GUI)
@@ -1194,10 +1200,13 @@ class main_GUI(QtGui.QWidget):
         ra = self.MUSE_RA
         dec = self.MUSE_Dec
 
-        #lambda, ra and dec of interest to extract the NB from the MUSE cube
-        ra = self.MUSE_RA
-        dec = self.MUSE_Dec
-        
+        #read redshift or wavelegth to display
+        try:
+            self.MUSE_Z = info_MUSE_ids[self.id_here][col_z]  
+        except:
+            self.lam = info_MUSE_ids[self.id_here][col_lam]
+           
+        #read redshift or wavelegth to make NB
         try:
             self.lam = info_MUSE_ids[self.id_here][col_lam]
             if (type(MUSE_DATA_CUBE)==str): #if there is lambda info and a cube loaded
@@ -1652,13 +1661,18 @@ class main_GUI(QtGui.QWidget):
         try:
             here_z_UV = float("%.3f" % self.UV_zs[np.argmin(abs(self.UV_x-x))]) 
             self.UV_z = str(here_z_UV) 
+            self.le_UV_z.setText(self.UV_z)
         except:
-            self.UV_z = str(0)     
+            self.UV_z = str(0)   
+            self.le_UV_z.setText(self.UV_z)
             
         try:
-            self.UV_flux_mag = float("%.2f" % self.UV_flux_mag[np.argmin(abs(self.UV_x-x))]) 
+            here_UV_flux_mag = float("%.2f" % self.UV_flux_mag[np.argmin(abs(self.UV_x-x))]) 
+            self.UV_flux_mag = str(here_UV_flux_mag) 
+            self.le_UV_mag.setText(self.UV_flux_mag)
         except:
             self.UV_flux_mag = 0
+            self.le_UV_mag.setText(self.UV_flux_mag)
                 
         # change colour of circle when clicked from white to red
         try:
