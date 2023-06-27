@@ -159,6 +159,14 @@ col_pID = args.column_pID
 col_photoz = args.column_photoz
 col_photo_mag_flux = args.column_pmag_flux
 
+#labels for HST images
+for i, item in enumerate(args.hstimage1):
+    if i<len(args.hstimage1)-1:
+        if (args.hstimage1[i]=='a' and args.hstimage1[i+1]=='c' and args.hstimage1[i+2]=='s') or (args.hstimage1[i]=='w' and args.hstimage1[i+1]=='f' and args.hstimage1[i+2]=='c'):
+            hst_label1=str(args.hstimage1[i:i+8])
+            hst_label2=str(args.hstimage2[i:i+8])
+            hst_label4=str(args.hstimage4[i:i+8])
+            hst_label_main=str(args.hstimageMAIN[i:i+8])
 
 dict_cats = {
              'MUSE': args.catalog, # MUSE catalogue inside Fields directory
@@ -771,10 +779,10 @@ class main_GUI(QtGui.QWidget):
     def fill_window(self):
         # create widgets/images with HST bands (436, 606, 775/816 and 160)
         self.image_narrowband_muse('MUSE narrowband',0,self.muse_data,self.header_muse) 
-        self.image_HST436('HST band 435',7,self.hst_data_436,self.hst_header_436)
-        self.image_HST606(self.tr('HST band 606'),10,self.hst_data_606,self.hst_header_606)
-        self.image_HST775('HST band 775/814',13,self.hst_data_775,self.hst_header_775)
-        self.image_HST160('HST band 160',16,self.hst_data_160,self.hst_header_160)
+        self.image_HST436(hst_label1,7,self.hst_data_436,self.hst_header_436)
+        self.image_HST606(self.tr(hst_label2),10,self.hst_data_606,self.hst_header_606)
+        self.image_HST775(hst_label_main,13,self.hst_data_775,self.hst_header_775)
+        self.image_HST160(hst_label4,16,self.hst_data_160,self.hst_header_160)
         
         #editable scale cuts for the small HST images with their default values
         self.le_resolution436 = QtGui.QLineEdit(self.le_resolution436.text(),self)  
