@@ -680,7 +680,7 @@ class main_GUI(QtGui.QWidget):
 	
 	#cross on the MUSE NB corresponding to the spectroscopic position of the object
         s2 = pg.ScatterPlotItem([float(x_muse)],[float(y_muse)],symbol='o',pxMode=False,pen=pg.mkPen('k',width=2),size=2.5,brush=pg.mkBrush(255,255, 255, 0)) 
-        s3 = pg.ScatterPlotItem([float(x_muse)],[float(y_muse)],symbol='+',pxMode=False,size=1.5) 
+        s3 = pg.ScatterPlotItem([float(x_muse)],[float(y_muse)],symbol='+',pen=pg.mkPen('r'),pxMode=False,size=1.5) 
         self.view_muse.addItem(s3)
         self.view_muse.addItem(s2)
       
@@ -1626,7 +1626,7 @@ class main_GUI(QtGui.QWidget):
         self.s1 = pg.ScatterPlotItem(close_here_x,close_here_y,size=32,pxMode=False,pen=pg.mkPen('w',width=3),
                                      brush=pg.mkBrush(255,255, 255, 0),name=close_here_ID) #pen is the thick line and brush the filling (empty)
         self.s2 = pg.ScatterPlotItem([float(self.MUSE_x)],[float(self.MUSE_y)],symbol='o',pxMode=False,pen=pg.mkPen('k',width=2),size=15,brush=pg.mkBrush(255,255, 255, 0)) 
-        self.s3 = pg.ScatterPlotItem([float(self.MUSE_x)],[float(self.MUSE_y)],symbol='+',pxMode=False,size=10) 
+        self.s3 = pg.ScatterPlotItem([float(self.MUSE_x)],[float(self.MUSE_y)],symbol='+',pen=pg.mkPen('r'),pxMode=False,size=10) 
         self.view_hst_main.addItem(self.s1)
         self.view_hst_main.addItem(self.s2)
         self.view_hst_main.addItem(self.s3)
